@@ -4,25 +4,47 @@ const pairsFull = [
   '[]', '()', '{}',
   '][', ')(', '}{',
   '<>', '/\\',
+  '  ',
+  ['<<', '>>'],
+  ['>>', '<<'],
   '><', '\\/',
+  '<>', '/\\',
   ['""', '""'],
   ["''", "''"],
   ['\\\\', '//'],
   '++', '--', '**',
   '!!',  '^^', '~~',
   '==', '||',
-  '..', '::'
+  '..', '::',
+  '00', '88',
+  ['"b"', '"d"'],
+  ['"d"', '"b"'],
+  ['"p"', '"q"'],
+  ['"q"', '"p"'],
+  ['"o"', '"o"'],
+  ['"v"', '"v"'],
+  ['"w"', '"w"'],
+  ['"x"', '"x"'],
+  ['"A"', '"A"'],
+  ['"H"', '"H"'],
+  ['"I"', '"I"'],
+  ['"M"', '"M"'],
+  ['"O"', '"O"'],
+  ['"T"', '"T"'],
+  ['"U"', '"U"'],
+  ['"V"', '"V"'],
+  ['"W"', '"W"'],
+  ['"X"', '"X"'],
+  ['"Y"', '"Y"']
 ];
 
 const spaces = '               ';
 const cache = {};
-let counter = 0;
 
 function create() {
 
   let output = '';
   const length = Math.floor(Math.random() * 8 + 2);
-  // const length = Math.abs(Math.sin(counter / 10)) * 5 + 2;
   const pairs = pairsFull.slice(0);
 
   for (var i=0; output.length < length * 2; i++){
@@ -57,11 +79,21 @@ function create() {
     return
   }
 
-  if (x !== 1) { return; }
+  if (typeof x != "string") { return; }
 
-  console.log(output + x);
-  counter++;
-}
+  for (var c of "("){
+    if (
+      x[i=0] == c ||
+      x[i=1] == c ||
+      x[i=2] == c ||
+      x[i=5] == c ||
+      x[i=7] == c ||
+      x[i=8] == c ||
+      x[i=16] == c
+    ) {
+      console.log(output + c + " (" + x+ ") [" + i + "]");
+    }
+  }}
 
 while (true){
   create();
